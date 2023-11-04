@@ -13,7 +13,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/collections', collections);
+app.use('/api/collection', collections);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
