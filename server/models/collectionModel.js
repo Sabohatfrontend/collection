@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const collectSchema = new Schema({
-    title:{
+const collectionSchema = new Schema({
+    title: {
         type: String,
         required: true
     },
-    reps:{
+    reps: {
         type: Number,
         required: true
     },
-    load:{
+    load: {
         type: Number,
         required: true
     },
-}, {timestamps:true});
+}, { timestamps: true });
 
-module.exports = mongoose.model('Collect',collectSchema);
+module.exports = mongoose.model('Collection', collectionSchema);

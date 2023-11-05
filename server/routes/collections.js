@@ -1,7 +1,7 @@
 const express = require('express');
 const {
     getCollection,
-    getCollect,
+    getSingleCollection,
     createCollection,
     deleteCollection,
     updateCollection
@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get('/', getCollection);
 
-router.get('/:id', getCollect);
+router.get('/:id', getSingleCollection);
 
 router.post('/', createCollection);
 

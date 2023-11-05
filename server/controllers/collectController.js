@@ -1,24 +1,24 @@
-const Collect = require('../models/collectModel');
+const Collection = require('../models/collectionModel');
 const mongoose = require('mongoose');
 
 //get all collection
 
 const getCollection = async (req, res) => {
-    const collection = await Collect.find({}).sort({ createAt: -1 });
+    const collection = await Collection.find({}).sort({ createAt: -1 });
 
     res.status(200).json(collection);
 }
 
 
 //get a single collection
-const getCollect = async (req, res) => {
+const getSingleCollection = async (req, res) => {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({ error: 'No such collection' });
     }
 
-    const collection = await Collect.findById(id);
+    const collection = await Collection.findById(id);
 
     if (!collection) {
         return res.status(404).json({ error: 'No such collection' });
@@ -30,8 +30,26 @@ const getCollect = async (req, res) => {
 //create collection
 const createCollection = async (req, res) => {
     const { title, load, reps } = req.body;
+
+    let emptyFields = [];
+if(!title){
+    emptyFields.push('title');
+}
+
+if(!load){
+    emptyFields.push('load');
+}
+
+if(!reps){
+    emptyFields.push('reps');
+}
+
+if(emptyFields.length > 0){
+    return res.status(400).json({error: 'Please fill in all the fields',emptyFields})
+}
+
     try {
-        const collect = await Collect.create({ title, load, reps });
+        const collect = await Collection.create({ title, load, reps });
         res.status(200).json(collect);
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -47,7 +65,7 @@ const updateCollection = async (req, res) => {
         return res.status(404).json({ error: 'No such collection' });
     }
 
-    const collection = await Collect.findOneAndUpdate({ _id: id },{...req.body});
+    const collection = await Collection.findOneAndUpdate({ _id: id }, { ...req.body });
 
     if (!collection) {
         return res.status(400).json({ error: 'No such collection' });
@@ -64,7 +82,7 @@ const deleteCollection = async (req, res) => {
         return res.status(404).json({ error: 'No such collection' });
     }
 
-    const collection = await Collect.findOneAndDelete({ _id: id });
+    const collection = await Collection.findOneAndDelete({ _id: id });
 
     if (!collection) {
         return res.status(400).json({ error: 'No such collection' });
@@ -75,7 +93,7 @@ const deleteCollection = async (req, res) => {
 
 module.exports = {
     getCollection,
-    getCollect,
+    getSingleCollection,
     createCollection,
     deleteCollection,
     updateCollection
