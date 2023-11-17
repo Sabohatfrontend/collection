@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     res.send(categories);
 });
 
-router.post('/', auth, async (req, res) => {
+router.post('/', [auth, admin], async (req, res) => {
     const { error } = validate(req.body);
     if (error) {
         return res.status(400).send(error.details[0].message)
@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
     res.send(category);
 });
 
-router.put('/:id', auth, async (req, res) => {
+router.put('/:id', [auth, admin] async (req, res) => {
     const { error } = validate(req.body);
 
     if (error) {
@@ -59,7 +59,7 @@ router.put('/:id', auth, async (req, res) => {
     res.send(category);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',[auth,admin], async (req, res) => {
     const category = await Category.findByIdAndRemove(req.params.id);
     if (!category) {
         return res.status(404).send('404 Not Found');
