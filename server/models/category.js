@@ -13,7 +13,7 @@ const categorySchema = new mongoose.Schema({
         type: [String],
         required: true
     }
-});
+},{ timestamps: true });
 
 function validateCategory() {
     const schema = Joi.object({
