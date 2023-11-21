@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Category = require('./category');
 const User = require('./user');
 const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
 
 const Schema = mongoose.Schema;
 
@@ -225,8 +226,8 @@ function validateCollection(item) {
         title: Joi.string().required().trim(),
         description: Joi.string(),
         img_url: Joi.string(),
-        category_id: Joi.objectId(), required(),
-        user_id: Joi.objectId(), required(),
+        category_id: Joi.objectId().required(),
+        user_id: Joi.objectId().required(),
         custom_string1: Joi.object({
             field_name: Joi.string().trim(),
             field_value: Joi.string().trim(),
@@ -244,32 +245,32 @@ function validateCollection(item) {
         }),
         custom_int1: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.number().trim(),
+            field_value: Joi.number(),
             field_enabled: Joi.boolean()
         }),
         custom_int2: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.number().trim(),
+            field_value: Joi.number(),
             field_enabled: Joi.boolean()
         }),
         custom_int3: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.number().trim(),
+            field_value: Joi.number(),
             field_enabled: Joi.boolean()
         }),
         custom_bool1: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.boolean().trim(),
+            field_value: Joi.boolean(),
             field_enabled: Joi.boolean()
         }),
         custom_bool2: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.boolean().trim(),
+            field_value: Joi.boolean(),
             field_enabled: Joi.boolean()
         }),
         custom_bool3: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.boolean().trim(),
+            field_value: Joi.boolean(),
             field_enabled: Joi.boolean()
         }),
         custom_text1: Joi.object({
@@ -289,17 +290,17 @@ function validateCollection(item) {
         }),
         custom_date1: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.date().format(YYYY - MM - DD).trim(),
+            field_value: Joi.date(),
             field_enabled: Joi.boolean()
         }),
         custom_date2: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.date().format(YYYY - MM - DD).trim(),
+            field_value: Joi.date(),
             field_enabled: Joi.boolean()
         }),
         custom_date3: Joi.object({
             field_name: Joi.string().trim(),
-            field_value: Joi.date().format(YYYY - MM - DD).trim(),
+            field_value: Joi.date(),
             field_enabled: Joi.boolean()
         }),
     })

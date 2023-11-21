@@ -15,11 +15,12 @@ const categorySchema = new mongoose.Schema({
     }
 },{ timestamps: true });
 
-function validateCategory() {
+function validateCategory(category) {
     const schema = Joi.object({
         category_name: Joi.string().min(2).max(50).required(),
         tags: Joi.array().items(Joi.string())
-    })
+    });
+    return schema.validate(category);
 }
 
 const Category = mongoose.model('Category', categorySchema);

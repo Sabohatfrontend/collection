@@ -1,5 +1,5 @@
 const { User } = require('../models/user');
-const express = require('express'),
+const express = require('express');
 const router = express.Router();
 const _ = require('lodash');
 const bcrypt = require('bcrypt');
@@ -14,6 +14,10 @@ router.post('/', async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
         return res.status(400).send('Email or Password is invalid!');
+    }
+
+    if(user.isBlock){
+        return res.status(403).send('You don\'t have permission to access this resource');
     }
 
     const isValidPassword = await bcrypt.compare(req.body.password, user.password);
