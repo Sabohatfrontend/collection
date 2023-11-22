@@ -8,8 +8,8 @@ const categoryRoute = require('./routes/category');
 const authRoute = require('./routes/auth');
 const accountRoute = require('./routes/account');
 const adminRoute = require('./routes/admin');
-
 const app = express();
+require('./startup/prop')(app);
 
 app.use(express.json());
 
