@@ -2,7 +2,10 @@ const { Collection } = require('../models/collection');
 const mongoose = require('mongoose');
 
 const getCollection = async (req, res) => {
-    const collection = await Collection.find({}).sort({ createAt: -1 });
+    const collection = await Collection.find({})
+    .populate({path: 'user_id', select: ['firstname','lastname']})
+    .populate('category_id')
+    .sort({ createAt: -1 });
 
     res.status(200).json(collection);
 }

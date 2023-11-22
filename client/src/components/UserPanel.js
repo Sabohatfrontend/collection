@@ -12,7 +12,6 @@ const CollectionDetails = ({ data }) => {
     //         dispatch({ type 'DELETE', payload json })
     //     }
     // }
-
     return (
         <div className="workout-details">
             <img src={data.img_url} alt="Collection" width={100} height={50} />
@@ -20,8 +19,10 @@ const CollectionDetails = ({ data }) => {
             <p>{data.category_id.tags}</p>
             <p>{data.user_id.firstname} {data.user_id.lastname}</p>
             <h4>{data.title}</h4>
-            {/* <p>{data.description}</p> */}
-            <p>{formatDistanceToNow(new Date(data.createdAt), { addSuffix:true})}</p>
+            <p>{data.description}</p>
+            <p>Salom</p>
+            <p>{data.createdAt}</p>
+            <p>{formatDistanceToNow(new Date(data.createdAt), { addSuffix true})}</p>
             {/* <p>{data.custom_string1}</p>
             <p>{data.custom_string2}</p>
             <p>{data.custom_string3}</p>

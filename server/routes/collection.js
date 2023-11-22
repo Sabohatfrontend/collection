@@ -2,7 +2,7 @@ const express = require('express');
 const auth = require('../middleware/auth');
 const {
     getCollection,
-    getItemSingleCollection,
+    getItemCollection,
     createCollection,
     deleteCollection,
     updateCollection,

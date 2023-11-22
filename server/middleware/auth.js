@@ -1,5 +1,5 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const config = require('config');
 
 module.exports = function auth(req, res, next) {
     const token = req.header('x-auth-token');
@@ -8,7 +8,7 @@ module.exports = function auth(req, res, next) {
         return res.status(401).send('401 Authorization required');
     }
     try {
-        const decoded = jwt.verify(token, '12as332');//TODO config.get('jwtPrivateKey')
+        const decoded = jwt.verify(token, process.env.JWTPRIVATEKEY);
         req.user = decoded;
         next();
     }

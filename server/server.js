@@ -24,16 +24,8 @@ app.use('/api/categories', categoryRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/collection', collectionRoute);
 app.use('/api/admin', adminRoute)
-// app.use('/api/collection/search/q-', collections);
-// app.use('/api/collection/filter/q-', collections);
-//app.use('api/admin/users');
-//app.use('api/admin/users/:id');delete,block, add admin, delete from admin, delete themselves
 
-// app.use('api/admin/collection')delete, add,patch
-
-
-
-mongoose.connect('mongodb://localhost/virtualdars')
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         app.listen(process.env.PORT, () => {
             console.log(`connected to db & listening on port ${process.env.PORT}!!!`)
