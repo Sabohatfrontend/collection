@@ -10,10 +10,10 @@ const authRoute = require('./routes/auth');
 const accountRoute = require('./routes/account');
 const adminRoute = require('./routes/admin');
 const app = express();
-const cors =require('cors');
+const cors = require('cors');
 require('./startup/prop')(app);
 
-const corsOption ={
+const corsOption = {
     origin: "https://localhost:3000"
 }
 
@@ -40,13 +40,13 @@ if (process.env.NODE_ENV === "production") {
     })
 }
 
-app.listen(process.env.PORT, () => {
-    console.log(`connected to db & listening on port ${process.env.PORT}!!!`)
-});
-// mongoose.connect(process.env.MONGO_URI,{ useNewUrlParser: true, useUnifiedTopology: true })
-//     .then(() => {
-//
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     });
+
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        app.listen(process.env.PORT, () => {
+            console.log(`connected to db & listening on port ${process.env.PORT}!!!`)
+        });
+    })
+    .catch((error) => {
+        console.log(error);
+    });
