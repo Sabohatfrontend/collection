@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 
 const express = require('express');
 const mongoose = require('mongoose')
@@ -23,7 +24,14 @@ app.use('/api/users', userRoute);
 app.use('/api/categories', categoryRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/collection', collectionRoute);
-app.use('/api/admin', adminRoute)
+app.use('/api/admin', adminRoute);
+
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+    })
+}
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
