@@ -14,7 +14,7 @@ const cors = require('cors');
 require('./startup/prop')(app);
 
 const corsOption = {
-    origin: "https://localhost:3000"
+    origin: "https://collection-manage.onrender.com"
 }
 
 app.use(express.json());
