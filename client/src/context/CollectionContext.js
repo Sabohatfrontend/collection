@@ -4,10 +4,10 @@ export const CollectionContext = createContext();
 
 export const collectionReducer = (state, action) => {
     switch (action.type) {
-        case 'SET_WORKOUTS': return {
+        case 'SET_COLLECTION': return {
             collection: action.payload
         }
-        case 'CREATE_WORKOUT': return {
+        case 'CREATE_COLLECTION': return {
             collection: [action.payload, ...state.collection]
         }
 
@@ -18,8 +18,9 @@ export const collectionReducer = (state, action) => {
     }
 }
 
+
 export const CollectionContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(collectionReducer, { collection: null })
+    const [state, dispatch] = useReducer(collectionReducer, { collection: null });
 
     return (
         <CollectionContext.Provider value={{ ...state, dispatch }}>
