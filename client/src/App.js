@@ -1,13 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-import Navbar from './components/Navbar';
+import Container from 'react-bootstrap/Container';
+import Sitenav from './components/Navbar';
+import CategoryContextProvider from './context/CategoryContext';
 
 function App() {
   return (
-    <div className="App">
+    <Container fluid>
       <BrowserRouter>
-        <Navbar />
+        <Sitenav />
         <div className='pages'>
           <Routes>
             <Route path='/'
@@ -15,7 +17,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-    </div>
+    </Container>
   );
 }
 

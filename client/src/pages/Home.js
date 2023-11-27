@@ -1,8 +1,11 @@
-import {useEffect } from 'react';
+import { useEffect } from 'react';
 
-import CollectionDetails from '../components/CollectionDetails';
-import CollectionForm from '../components/CollectionForm';
 import { useCollectionContext } from '../hooks/useCollectionContext';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
     const { collection, dispatch } = useCollectionContext();
@@ -13,21 +16,38 @@ const Home = () => {
             const json = await response.json();
 
             if (response.ok) {
-               dispatch({ type: 'SET_WORKOUTS', payload: json })
+                dispatch({ type: 'SET_COLLECTION', payload: json })
             }
         }
 
         fetchCollection();
     }, [dispatch]);
+
     return (
-        <div className='home'>
-            <div className='workouts'>
-                {collection && collection.map((data) => (
-                    <CollectionDetails key={data._id} data={data} />
-                ))}
-            </div>
-            <CollectionForm />
-        </div>
+        <>
+            <Row xs={1} md={2} lg={3} className="g-4">
+                {
+                    collection && collection.map((data) => {
+                        return (
+                            <Col key={data._id}>
+                                <Card>
+                                    <Card.Img variant="top" src={data.img_url} style={{width: '18rem', height: '24rem', marginRight: 'auto', marginLeft:'auto', objectFit:'contain'}}/>
+                                    <Card.Body>
+                                        <Card.Title>{data.title}</Card.Title>
+                                        <Card.Text>
+                                            {data.description}
+                                        </Card.Text>
+                                        <Card.Link href="#">{data.category_id.name}</Card.Link>
+                                        <Card.Link href="#">{data.category_id.tags}</Card.Link>
+                                        <Card.Link href="#">{data.user_id.firstname} {data.user_id.lastname}</Card.Link>
+                                        <small className="text-muted">{formatDistanceToNow(new Date(data.createdAt), { addSuffix: true })}</small>
+                                    </Card.Body>
+                                </Card>
+                            </Col>)
+                    })
+                }
+            </Row>
+        </>
     );
 };
 
