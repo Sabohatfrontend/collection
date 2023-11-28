@@ -6,8 +6,8 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 const Login = () => {
     const navigate = useNavigate();
     const [value, handleChange] = useForm({
-        email: '',
-        password: ''
+        email: "",
+        password: ""
     });
     const [hasError, setHasError] = useState(false);
     const [isEmpty, setIsEmpty] = useState(false);
@@ -17,13 +17,13 @@ const Login = () => {
 
     const fetchData = async () => {
         const response = await fetch("/api/auth", {
-            method: 'POST',
+            method: "POST",
             body: JSON.stringify({
                 email: value.email[0],
                 password: value.password[0]
             }),
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             }
         });
 
@@ -32,9 +32,9 @@ const Login = () => {
         }
 
         if (response.ok) {
-            const token = response.headers.get('x-auth-token');
-            window.localStorage.setItem('x-auth-token', token);
-            dispatch({ type: 'LOGIN', payload: token });
+            const token = response.headers.get("x-auth-token");
+            window.localStorage.setItem("x-auth-token", token);
+            dispatch({ type: "LOGIN", payload: token });
             navigate("/");
         }
     }

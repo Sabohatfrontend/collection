@@ -17,7 +17,13 @@ const SiteNav = () => {
     const { category, dispatch } = useCategoryContext();
     useEffect(() => {
         const fetchCategory = async () => {
-            const response = await fetch('/api/categories');
+            const response = await fetch('/api/categories',{
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Accept': 'application/json'
+                }
+            });
             const json = await response.json();
 
             if (response.ok) {
