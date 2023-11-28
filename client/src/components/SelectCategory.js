@@ -1,0 +1,6 @@
+const SelectCategory = () => {
+return (
+    <>
+    </>
+)
+}

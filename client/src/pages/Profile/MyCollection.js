@@ -1,23 +1,26 @@
 import { useEffect } from 'react';
 
-import { useCollectionContext } from '../hooks/useCollectionContext';
+
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { decodeToken } from '../../components/CollectionForm';
+import { useCollectionContext } from '../../hooks/useCollectionContext';
+import { useAuthContext } from '../../hooks/useAuthContext';
 
-
-const Home = () => {
+const MyCollection = () => {
     const { collection, dispatch } = useCollectionContext();
+    let { token } = useAuthContext();
 
     useEffect(() => {
         const fetchCollection = async () => {
-             // TODO
-            const response = await fetch('https://collection-server.onrender.com/api/collection',{
+            // TODO https://collection-server.onrender.com
+            const response = await fetch('https://collection-server.onrender.com/api/account/collection', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    'Accept': 'application/json'
+                    "x-auth-token": token
                 }
             });
             const json = await response.json();
@@ -58,4 +61,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default MyCollection;

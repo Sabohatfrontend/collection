@@ -1,23 +1,22 @@
-import { Link } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
+
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useCategoryContext } from "../hooks/useCategoryContext";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import CategoryDetails from "./CategoryDetail";
 import { useAuthContext } from "../hooks/useAuthContext";
 
 
 const SiteNav = () => {
-    const {token} = useAuthContext();
-    console.log(token);
+    const { token } = useAuthContext();
     const { category, dispatch } = useCategoryContext();
     useEffect(() => {
         const fetchCategory = async () => {
-            const response = await fetch('https://collection-server.onrender.com/api/categories',{
+            // TODO https://collection-server.onrender.com
+            const response = await fetch('https://collection-server.onrender.com/api/categories', {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -45,7 +44,6 @@ const SiteNav = () => {
                     navbarScroll
                 >
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="#action2">Link</Nav.Link>
                     <NavDropdown title="Categories" id="navbarScrollingDropdown">
                         {
                             category && category.map((data) => {
