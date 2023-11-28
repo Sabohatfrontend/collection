@@ -12,7 +12,13 @@ const Home = () => {
 
     useEffect(() => {
         const fetchCollection = async () => {
-            const response = await fetch('/api/collection');
+            const response = await fetch('/api/collection',{
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'Accept': 'application/json'
+                }
+            });
             const json = await response.json();
 
             console.log(response);
