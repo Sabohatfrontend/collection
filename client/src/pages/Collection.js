@@ -6,8 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-
-const Home = () => {
+const Collection = () => {
     const { collection, dispatch } = useCollectionContext();
 
     useEffect(() => {
@@ -51,4 +50,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Collection;
