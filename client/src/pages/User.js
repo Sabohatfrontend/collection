@@ -9,7 +9,7 @@ const User = () => {
 
     useEffect(() => {
         const fetchCollection = async () => {
-            const response = await fetch('/api/account');
+            const response = await fetch('https://collection-server.onrender.com/api/account');
             const json = await response.json();
 
             if (response.ok) {
