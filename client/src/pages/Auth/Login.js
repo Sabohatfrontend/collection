@@ -16,7 +16,7 @@ const Login = () => {
     const {dispatch} = useAuthContext();
 
     const fetchData = async () => {
-        const response = await fetch("/api/auth", {
+        const response = await fetch("https://collection-server.onrender.com/api/auth", {
             method: "POST",
             body: JSON.stringify({
                 email: value.email[0],

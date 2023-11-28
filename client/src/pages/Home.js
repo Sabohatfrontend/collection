@@ -12,7 +12,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchCollection = async () => {
-            const response = await fetch('/api/collection',{
+            const response = await fetch('https://collection-server.onrender.com/api/collection',{
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -20,8 +20,6 @@ const Home = () => {
                 }
             });
             const json = await response.json();
-
-            console.log(response);
 
             if (response.ok) {
                 dispatch({ type: 'SET_COLLECTION', payload: json })

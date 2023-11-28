@@ -31,7 +31,7 @@ const CollectionForm = () => {
     const titleInput = useRef();
 
     const fetchData = async (data) => {
-        const response = await fetch("/api/collection", {
+        const response = await fetch("https://collection-server.onrender.com/api/collection", {
             method: 'POST',
             body: JSON.stringify({
                 title: value.title[0],
