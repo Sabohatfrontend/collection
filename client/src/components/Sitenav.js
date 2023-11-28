@@ -66,9 +66,9 @@ const SiteNav = () => {
             </Navbar.Collapse>
             <Nav>
                 {
-                    token ? <Nav.Link href="account">Profile</Nav.Link> : <>
-                        <Nav.Link href="login">Sign in</Nav.Link>
-                        <Nav.Link href="register">Sign Up</Nav.Link>
+                    token ? <Nav.Link href="/account">Profile</Nav.Link> : <>
+                        <Nav.Link href="/login">Sign in</Nav.Link>
+                        <Nav.Link href="/register">Sign Up</Nav.Link>
                     </>
                 }
             </Nav>
