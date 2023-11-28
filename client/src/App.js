@@ -19,11 +19,11 @@ function App() {
         <Sitenav />
         <div className='pages'>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/account" element={<Profile />}>
-              <Route path='' element={<CollectionForm />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/account" element={<Profile />}>
+              <Route exact path='' element={<CollectionForm />} />
             </Route>
           </Routes>
         </div>
