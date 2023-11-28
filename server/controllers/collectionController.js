@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 
 const getCollection = async (req, res) => {
     const collection = await Collection.find({})
-    .populate({path: 'user_id', select: ['firstname','lastname']})
-    .populate('category_id')
-    .sort({ createAt: -1 });
+        .populate({ path: 'user_id', select: ['firstname', 'lastname'] })
+        .populate('category_id')
+        .sort({ createAt: -1 });
 
     res.status(200).json(collection);
 }
@@ -35,7 +35,7 @@ const getCollectionByUser = async (req, res) => {
         return res.status(404).json({ error: 'No such user' });
     }
 
-    const collection = await Collection.find({user_id: userId});
+    const collection = await Collection.find({ user_id: userId });
 
     if (!collection) {
         return res.status(404).json({ error: 'No such collection' });
@@ -52,7 +52,7 @@ const getCollectionByCategory = async (req, res) => {
         return res.status(404).json({ error: 'No such user' });
     }
 
-    const collection = await Collection.find({category_id: categoryId});
+    const collection = await Collection.find({ category_id: categoryId });
 
     if (!collection) {
         return res.status(404).json({ error: 'No such collection' });
@@ -63,25 +63,6 @@ const getCollectionByCategory = async (req, res) => {
 
 
 const createCollection = async (req, res) => {
-    const { title, category_id, user_id } = req.body;
-
-    let emptyFields = [];
-    if (!title) {
-        emptyFields.push('title');
-    }
-
-    if (!category_id) {
-        emptyFields.push('category');
-    }
-
-    if (!user_id) {
-        emptyFields.push('user_id');
-    }
-
-    if (emptyFields.length > 0) {
-        return res.status(400).json({ error: 'Please fill in all the required fields', emptyFields })
-    }
-
     try {
         const collection = new Collection({
             title: req.body.title,
