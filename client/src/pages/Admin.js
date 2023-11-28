@@ -9,6 +9,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchCollection = async () => {
+             // TODO https://collection-server.onrender.com
             const response = await fetch('https://collection-server.onrender.com/api/collection');
             const json = await response.json();
 

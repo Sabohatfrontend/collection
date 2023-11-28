@@ -13,7 +13,6 @@ const {
 
 // get user collection
 router.get('/collection',auth, async (req, res) => {
-console.log(req.user);
     const collection = await Collection.find({ user_id: req.user._id }).sort({ createAt: -1 });
 
     res.status(200).json(collection);

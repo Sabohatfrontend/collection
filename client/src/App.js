@@ -1,15 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-
 import Home from './pages/Home';
 import Container from 'react-bootstrap/Container';
 import Sitenav from './components/Sitenav';
-import CategoryContextProvider from './context/CategoryContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Profile from './pages/Profile/Profile';
 import CollectionForm from './components/CollectionForm';
+import MyCollection from './pages/Profile/MyCollection';
 
 function App() {
 
@@ -24,6 +22,7 @@ function App() {
             <Route exact path="/register" element={<Register />} />
             <Route exact path="/account" element={<Profile />}>
               <Route exact path='' element={<CollectionForm />} />
+              <Route exact path='collection' element={<MyCollection />} />
             </Route>
           </Routes>
         </div>

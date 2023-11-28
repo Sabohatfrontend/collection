@@ -20,6 +20,7 @@ const Register = (props) => {
     const { dispatch } = useAuthContext();
 
     const fetchData = async (data) => {
+         // TODO https://collection-server.onrender.com
         const response = await fetch("https://collection-server.onrender.com/api/users", {
             method: 'POST',
             body: JSON.stringify({
