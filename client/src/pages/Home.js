@@ -15,6 +15,8 @@ const Home = () => {
             const response = await fetch('/api/collection');
             const json = await response.json();
 
+            console.log(response);
+
             if (response.ok) {
                 dispatch({ type: 'SET_COLLECTION', payload: json })
             }

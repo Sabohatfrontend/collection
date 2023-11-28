@@ -4,12 +4,9 @@ function Navbar() {
     return (
         <Nav defaultActiveKey="/home" className="flex-column bg-body-tertiary">
 
-                <Nav.Link href="/home">Active</Nav.Link>
-                <Nav.Link eventKey="link-1">Link</Nav.Link>
-                <Nav.Link eventKey="link-2">Link</Nav.Link>
-                <Nav.Link eventKey="disabled" disabled>
-                    Disabled
-                </Nav.Link>
+                <Nav.Link href="/">Add Collection</Nav.Link>
+                <Nav.Link eventKey="link-1">My Profile</Nav.Link>
+                <Nav.Link eventKey="link-2">Sign out</Nav.Link>
 
         </Nav>
     );
